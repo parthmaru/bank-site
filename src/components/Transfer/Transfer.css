@@ -1,0 +1,21 @@
+.transaction-area {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.transfer-card {
+  width: 100%;
+  right: 0 !important;
+}
+
+.btn-transfer {
+  width: 100%;
+}
+
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: rgba(246, 247, 248, 0.5);
+}
