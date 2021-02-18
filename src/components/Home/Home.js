@@ -203,7 +203,7 @@ const Home = () => {
       <div className="container text-center home-template">
         <div>
           <h1 className="sparks-title">Sparks Foundation</h1>
-          <h3 className="creator">Name : PARTH MARU</h3>
+          <h3 className="creator">Developed By : PARTH MARU</h3>
           <h1 className="site-name">Banking Site</h1>
           <p className="tag-line">Perform an Action, Make a Transaction</p>
         </div>
