@@ -26,12 +26,23 @@ router.post("/adduser", async (req, res) => {
     .catch((err) => res.json(err));
 });
 
-// Required => update balance
-
-router.get("/transfer/:name/:amount", (req, res) => {
+router.get("/credit/:name/:amount", (req, res) => {
   userData.findOneAndUpdate(
     { name: req.params.name },
     { $inc: { balance: parseInt(req.params.amount) } },
+    (err, data) => {
+      if (err) console.log(err);
+      else {
+        res.json(data);
+      }
+    }
+  );
+});
+
+router.get("/debit/:name/:amount/", (req, res) => {
+  userData.findOneAndUpdate(
+    { name: req.params.name },
+    { $inc: { balance: -parseInt(req.params.amount) } },
     (err, data) => {
       if (err) console.log(err);
       else {

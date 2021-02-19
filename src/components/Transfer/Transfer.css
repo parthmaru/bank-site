@@ -19,3 +19,7 @@
   color: inherit;
   background-color: rgba(246, 247, 248, 0.5);
 }
+
+td {
+  padding: 1.5rem !important;
+}

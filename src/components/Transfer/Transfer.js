@@ -5,6 +5,7 @@ import "./Transfer.css";
 
 const Transfer = (props) => {
   const paramName = props.match.params.name;
+  const [senderName, setSenderName] = useState("");
 
   useEffect(async () => {
     const data = await fetchUsers();
@@ -17,7 +18,11 @@ const Transfer = (props) => {
 
   const transferMoney = async () => {
     await fetch(
-      `http://localhost:5000/bank/transfer/${paramName}/${amount}`
+      `http://localhost:5000/bank/credit/${paramName}/${amount}`
+    ).then((res) => res.json());
+
+    await fetch(
+      `http://localhost:5000/bank/debit/${senderName}/${amount}`
     ).then((res) => res.json());
 
     setTransferred(true);
@@ -34,7 +39,7 @@ const Transfer = (props) => {
             Congratulations, you have transferred money successfully!
           </h3>
           <hr className="my-4" />
-          <p class="lead">Simple, Secure and Fast Transactions</p>
+          <p className="lead">Simple, Secure and Fast Transactions</p>
           <p className="lead">
             <Link to="/user-detail">
               <button className="btn btn-primary btn-lg">See Users</button>
@@ -44,9 +49,9 @@ const Transfer = (props) => {
       )}
 
       <h3>
-        <table className="table transfer-card text-center ">
+        <table className="table transfer-card text-center">
           <tbody>
-            <tr>
+            <tr className="p-5">
               <td>
                 <h1
                   className="transfer-title text-center"
@@ -58,7 +63,19 @@ const Transfer = (props) => {
             </tr>
             <tr>
               <td>
-                <b>Holder Name : {paramName}</b>
+                <b>
+                  Sender Name :
+                  <select onChange={(e) => setSenderName(e.target.value)}>
+                    {users.map((user, index) => {
+                      return <option key={index}>{user.name}</option>;
+                    })}
+                  </select>
+                </b>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Reciever Name : {paramName}</b>
               </td>
             </tr>
             <tr>
